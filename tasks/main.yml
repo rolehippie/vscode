@@ -1,0 +1,28 @@
+# Standards: 1.2
+---
+- name: Download repo key
+  shell:
+    cmd: curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor --output /usr/share/keyrings/microsoft-archive-keyring.gpg
+    creates: /usr/share/keyrings/microsoft-archive-keyring.gpg
+  tags:
+    - vscode
+
+- name: Add apt repository
+  apt_repository:
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main
+    filename: vscode
+    update_cache: True
+    state: present
+  tags:
+    - vscode
+
+- name: Install required packages
+  loop:
+    - code
+  package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - vscode
+
+...
