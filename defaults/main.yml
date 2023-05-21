@@ -1,0 +1,9 @@
+# Standards: 1.2
+---
+# @var vscode_general_users:description: List of general users to install extensions
+vscode_general_users: []
+
+# @var vscode_extra_users:description: List of extra users to install extensions
+vscode_extra_users: []
+
+...

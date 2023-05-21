@@ -25,4 +25,34 @@
   tags:
     - vscode
 
+- name: Install defined extension
+  loop: "{{ (vscode_general_users + vscode_extra_users) | subelements('extensions', skip_missing=True) }}"
+  loop_control:
+    label: "{{ item.0.username }}: {{ item.1.name | default(item.1) }}"
+  when:
+    - item.1.state | default('present') == 'present'
+  register: vscode_ext_install
+  become: True
+  become_user: "{{ item.0.username }}"
+  command: "{{ item.0.executable | default('code') }} --install-extension {{ item.1.name | default(item.1) }}"
+  changed_when: "'was successfully installed' in vscode_ext_install.stdout"
+  failed_when: vscode_ext_install.rc != 0
+  tags:
+    - vscode
+
+- name: Remove defined extension
+  loop: "{{ (vscode_general_users + vscode_extra_users) | subelements('extensions', skip_missing=True) }}"
+  loop_control:
+    label: "{{ item.0.username }}: {{ item.1.name | default(item.1) }}"
+  when:
+    - item.1.state | default('present') == 'absent'
+  register: vscode_ext_remove
+  become: True
+  become_user: "{{ item.0.username }}"
+  command: "{{ item.0.executable | default('code') }} --uninstall-extension {{ item.1.name | default(item.1) }}"
+  changed_when: "'was successfully uninstalled' in vscode_ext_remove.stdout"
+  failed_when: vscode_ext_install.rc != 0
+  tags:
+    - vscode
+
 ...
