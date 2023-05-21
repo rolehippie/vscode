@@ -16,6 +16,9 @@ Building and improving this Ansible role have been sponsored by my current and p
 ## Table of content
 
 - [Requirements](#requirements)
+- [Default Variables](#default-variables)
+  - [vscode_extra_users](#vscode_extra_users)
+  - [vscode_general_users](#vscode_general_users)
 - [Discovered Tags](#discovered-tags)
 - [Dependencies](#dependencies)
 - [License](#license)
@@ -27,6 +30,28 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 - Minimum Ansible version: `2.10`
 
+
+## Default Variables
+
+### vscode_extra_users
+
+List of extra users to install extensions
+
+#### Default value
+
+```YAML
+vscode_extra_users: []
+```
+
+### vscode_general_users
+
+List of general users to install extensions
+
+#### Default value
+
+```YAML
+vscode_general_users: []
+```
 
 ## Discovered Tags
 
