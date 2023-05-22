@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/rolehippie/vscode/compare/v1.0.0...v1.1.0) (2023-05-22)
+
+
+### Features
+
+* install extensions for defined users ([e363071](https://github.com/rolehippie/vscode/commit/e363071bc381e1d957fa45fe848e062ce4c8dcc2))
+
 ## 1.0.0 (2023-05-02)
 
 
